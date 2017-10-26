@@ -12,4 +12,5 @@
 .App-container {
   max-width: 48rem;
   margin: 0 auto;
+  padding: .5rem;
 }

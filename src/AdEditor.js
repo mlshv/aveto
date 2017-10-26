@@ -11,13 +11,15 @@ const citiesMock = [
 ];
 
 class AdEditor extends React.Component {
-  state = {
+  static initialState = {
     title: '',
     description: '',
     phone: '',
     city: undefined,
     imgSrc: undefined
   };
+
+  state = AdEditor.initialState;
 
   onTitleChange = e => this.setState({ title: e.target.value });
   onDescriptionChange = e => this.setState({ description: e.target.value });
@@ -50,6 +52,7 @@ class AdEditor extends React.Component {
             city: citiesMock[this.state.city],
             timestamp: +new Date()
           });
+          this.setState(AdEditor.initialState);
         } else {
           alert('Неправильно введён номер телефона');
         }
@@ -104,7 +107,11 @@ class AdEditor extends React.Component {
           ))}
         </select>
         {this.state.imgSrc && (
-          <img src={this.state.imgSrc} className="AdEditor-imagePreview" alt="" />
+          <img
+            src={this.state.imgSrc}
+            className="AdEditor-imagePreview"
+            alt=""
+          />
         )}
         <label>
           <span className="button">Загрузить фото</span>

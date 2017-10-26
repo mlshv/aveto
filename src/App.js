@@ -22,7 +22,6 @@ class App extends Component {
   }
 
   handleAdSubmit = ad => {
-    console.log('submitting', ad);
     this.setState(prevState => ({ ads: [ad, ...prevState.ads] }));
   };
 

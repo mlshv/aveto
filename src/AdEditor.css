@@ -24,6 +24,37 @@
   border: 1px solid #ddd;
 }
 
+.AdEditor-phoneInput {
+  box-sizing: border-box;
+  padding: .5rem;
+  font-size: 1rem;
+  border: 1px solid #ddd;
+}
+
+.AdEditor-phoneFormat {
+  margin: .5rem 0 1rem;
+}
+
+.AdEditor-select {
+  display: block;
+  width: 100%;
+  margin-top: .5rem;
+  padding: 1rem;
+  box-sizing: border-box;
+  border: 0;
+  font-size: 1rem;
+  cursor: pointer;
+  background: #ddd;
+  text-align: center;
+}
+
+.AdEditor-imagePreview {
+  max-width: 100%;
+  max-height: 300px;
+  margin: 1rem 0;
+  border: 1px solid #ddd;
+}
+
 .AdEditor-fileInput {
   display: none;
 }

@@ -15,7 +15,6 @@ class AdEditor extends React.Component {
     title: '',
     description: '',
     phone: '',
-    phoneIncorrect: false,
     city: undefined,
     imgSrc: undefined
   };
@@ -23,10 +22,12 @@ class AdEditor extends React.Component {
   onTitleChange = e => this.setState({ title: e.target.value });
   onDescriptionChange = e => this.setState({ description: e.target.value });
   onCityChange = e => this.setState({ city: e.target.value });
+
   onPhoneChange = e => {
-    const inputValue = e.target.value;
-    if (/\+7{0,1}[0-9]{0,11}$/.test(inputValue.replace(/ /g, ''))) {
-      this.setState({ phone: inputValue });
+    const phone = e.target.value;
+    const isPhoneValid = p => /\+[0-9]{0,11}$/.test(p.replace(/ /g, ''));
+    if (isPhoneValid(phone)) {
+      this.setState({ phone });
     }
   };
 
@@ -36,6 +37,27 @@ class AdEditor extends React.Component {
       const reader = new FileReader();
       reader.onload = e => this.setState({ imgSrc: e.target.result });
       reader.readAsDataURL(input.files[0]);
+    }
+  };
+
+  onSubmit = () => {
+    if (this.state.title) {
+      if (this.state.phone) {
+        const isPhoneValid = p => /\+7{1}[0-9]{10}$/.test(p.replace(/ /g, ''));
+        if (isPhoneValid(this.state.phone)) {
+          this.props.onSubmit({
+            ...this.state,
+            city: citiesMock[this.state.city],
+            timestamp: +new Date()
+          });
+        } else {
+          alert('Неправильно введён номер телефона');
+        }
+      } else {
+        alert('Укажите номер телефона');
+      }
+    } else {
+      alert('Укажите название');
     }
   };
 
@@ -61,11 +83,11 @@ class AdEditor extends React.Component {
           <input
             onChange={this.onPhoneChange}
             value={this.state.phone}
-            class="AdEditor-phoneInput"
+            className="AdEditor-phoneInput"
             type="tel"
             placeholder="Контактный телефон"
           />
-          <p class="AdEditor-phoneFormat">В формате +7 xxx xxx xx xx</p>
+          <p className="AdEditor-phoneFormat">В формате +7 xxx xxx xx xx</p>
         </div>
         <select
           value={this.state.city}
@@ -82,7 +104,7 @@ class AdEditor extends React.Component {
           ))}
         </select>
         {this.state.imgSrc && (
-          <img src={this.state.imgSrc} className="AdEditor-imagePreview" />
+          <img src={this.state.imgSrc} className="AdEditor-imagePreview" alt="" />
         )}
         <label>
           <span className="button">Загрузить фото</span>
@@ -92,7 +114,9 @@ class AdEditor extends React.Component {
             type="file"
           />
         </label>
-        <button className="button">Добавить объявление</button>
+        <button onClick={this.onSubmit} className="button">
+          Добавить объявление
+        </button>
       </div>
     );
   }

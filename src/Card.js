@@ -1,13 +1,20 @@
 import React from 'react';
 import './Card.css';
 
-export default props => (
-  <div className="Card">
-    <div className="Card-container">
-      <h2>Имя карточки</h2>
-      <p>Описание</p>
-      <img className="Card-image" src="https://codepo8.github.io/canvas-images-and-pixels/img/horse.png" />
+export default props => {
+  const { title, description, imgSrc, phone, city } = props.ad;
+  return (
+    <div className="Card">
+      <div className="Card-container">
+        <h2>{title}</h2>
+        {description && <p className="Card-description">{description}</p>}
+        {imgSrc && <img className="Card-image" src={imgSrc} alt={title} />}
+        <p>Телефон: {phone}</p>
+        {city && <p>Город: {city}</p>}
+      </div>
+      <button onClick={props.onDelete} className="button">
+        Удалить
+      </button>
     </div>
-    <button className="button">Удалить</button>
-  </div>
-);
+  );
+};

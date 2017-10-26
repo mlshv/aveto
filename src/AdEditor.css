@@ -1,0 +1,29 @@
+.AdEditor {
+  margin-top: 3rem;
+}
+
+.AdEditor-title {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 1rem;
+  padding: .5rem;
+  font-size: 1.5rem;
+  border: 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.AdEditor-description {
+  display: block;
+  width: 100%;
+  margin-bottom: 1rem;
+  padding: .5rem;
+  box-sizing: border-box;
+  font-size: 1.5rem;
+  resize: none;
+  border: 1px solid #ddd;
+}
+
+.AdEditor-fileInput {
+  display: none;
+}

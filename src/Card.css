@@ -1,0 +1,8 @@
+.Card {
+  margin: 3rem 0;
+  border: 1px solid #ddd;
+}
+
+.Card-container {
+  padding: 1rem;
+}
